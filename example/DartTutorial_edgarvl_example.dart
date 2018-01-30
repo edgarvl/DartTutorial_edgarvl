@@ -1,63 +1,28 @@
-import 'package:DartTutorial_edgarvl/DartTutorial_edgarvl.dart';
+//import 'package:DartTutorial_edgarvl/DartTutorial_edgarvl.dart';
+import 'dart:html';
+import 'dart:async';
+
 
 main() {
-  var awesome = new Awesome();
-  print('Dart Tutorial --edgarvl--');
 
-  //Llamada de función
-  //print(makeNewTurtle("Jeff"));
-  //Condicionales
-  //llamadaif();
-//  llamadaSwitch();
-  //Estructuras de control
-llamadaDartForin();
-}
-//Estructuras de control
-void llamadaDartForin(){
-  var coll = [1,2,3,4,5,6,7,8,9,10];
-
-  for(var x in coll){
-    print(x);
-  }
+  requestThat_Takes_A_Long_Time();
+  requestThat_Returns_Immediatly();
+  requestThat_Takes_About_2_Seconds();
 }
 
-//Condiciones
-void llamadaif() {
-  bool isSunny = true;
-  bool isRaining = true;
-
-  if (isSunny) {
-    print("Go to beach, bring surfboard");
-  } else if (isRaining) {
-    print("Go to Coffe Shop");
-  } else {
-    print("Go to beach, bring coffee");
-  }
+Future requestThat_Takes_A_Long_Time() async{
+  String longTime= await getLongRequest();
+  return longTime;
 }
 
-void llamadaSwitch(){
-  var beach = 'OPEN';
-
-  switch(beach){
-    case 'CLOSED': executeSurf(); break;
-    case 'OPEN': executeSurf(); break;
-    case 'SHARKS': executeSharks(); break;
-    default: executeSurf();
-  }
+Future getLongRequest() async{
+  return (await HttpRequest.getString("http://localhost:8080/api/tasks"));
 }
 
-void executeSharks(){}
-
-void executeSurf(){}
-
-//Funciones:
-//String makeNewTurtle(String name) => name +" Turtle";
-
-//String makeNewTurtle(String name, {String color:'blue'}){
-//  return "I am $name the $color turtle";
-//}
-/*
-String makeNewTurtle(String name){
-  return "I am "+name+" the turtle";
+String requestThat_Returns_Immediatly(){
+  return "Immediate results";
 }
-*/
+
+requestThat_Takes_About_2_Seconds(){
+  return "2 seconds later...";
+}
